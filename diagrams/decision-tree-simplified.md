@@ -15,9 +15,7 @@ A streamlined 7-question decision tree for quick service selection when you need
 
 ```mermaid
 flowchart TB
-    Start([Choose Azure Compute Service]) --> Legend[Legend: ✅ Best fit | ⚠️ Consider | ℹ️ Alternative]
-    
-    Legend --> Q1{Need Kubernetes<br/>API access?}
+    Start([Choose Azure Compute Service]) --> Q1{Need Kubernetes<br/>API access?}
     
     Q1 -->|Yes| AKS1[✅ AKS<br/>Full Kubernetes control<br/>API access required]
     Q1 -->|No| Q2{Using<br/>containers?}
