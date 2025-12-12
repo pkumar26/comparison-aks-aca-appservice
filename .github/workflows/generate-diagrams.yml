@@ -51,10 +51,11 @@ jobs:
       - name: Install Mermaid CLI
         run: npm install -g @mermaid-js/mermaid-cli
       
-      - name: Create export directories
+      - name: Create export directories and puppeteer config
         run: |
           mkdir -p diagrams/exports/png
           mkdir -p diagrams/exports/svg
+          echo '{"args":["--no-sandbox","--disable-setuid-sandbox"]}' > puppeteer-config.json
       
       - name: Generate PNG diagrams with transparent background
         run: |
@@ -66,8 +67,7 @@ jobs:
               --theme default \
               --width 2400 \
               --scale 2 \
-              --puppeteerConfigFile /dev/null \
-              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'
+              --puppeteerConfigFile puppeteer-config.json
           done
       
       - name: Generate SVG diagrams with transparent background
@@ -78,8 +78,7 @@ jobs:
             mmdc -i "$file" -o "diagrams/exports/svg/${filename}.svg" \
               --backgroundColor transparent \
               --theme default \
-              --puppeteerConfigFile /dev/null \
-              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'
+              --puppeteerConfigFile puppeteer-config.json
           done
       
       - name: Check for changes
