@@ -30,7 +30,26 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Install Mermaid CLI
+      - name: Install Chromium dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libdrm2 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libgbm1 \
+            libasound2
+      
+      - name: Install M \
+              --puppeteerConfigFile /dev/null \
+              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'ermaid CLI
         run: npm install -g @mermaid-js/mermaid-cli
       
       - name: Create export directories
@@ -55,7 +74,9 @@ jobs:
           for file in diagrams/*.mmd; do
             filename=$(basename "$file" .mmd)
             echo "Generating SVG for $filename..."
-            mmdc -i "$file" -o "diagrams/exports/svg/${filename}.svg" \
+            mmdc -i "$file" - \
+              --puppeteerConfigFile /dev/null \
+              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'o "diagrams/exports/svg/${filename}.svg" \
               --backgroundColor transparent \
               --theme default
           done
