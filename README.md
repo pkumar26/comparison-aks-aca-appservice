@@ -35,9 +35,7 @@ This repository helps you decide between:
 
 ```mermaid
 flowchart TB
-    Start([Start: Choose Azure Compute Service]) --> Legend[Legend: ✅ Best fit | ⚠️ Consider carefully | ℹ️ Alternative]
-    
-    Legend --> InitialAssessment
+    Start([Start: Choose Azure Compute Service]) --> InitialAssessment
     
     subgraph InitialAssessment[" Initial Assessment "]
         Q1{Need Kubernetes<br/>API access?}
