@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Azure Documentation
+    url: https://docs.microsoft.com/azure/
+    about: Official Azure documentation for AKS, Container Apps, and App Service
+  - name: 💬 Discussions
+    url: https://github.com/pkumar26/comparison-aks-aca-appservice/discussions
+    about: Ask questions, share experiences, and discuss Azure service selection
+  - name: 🐛 Azure Support
+    url: https://azure.microsoft.com/support/
+    about: For Azure service issues or technical support (not related to this repository)

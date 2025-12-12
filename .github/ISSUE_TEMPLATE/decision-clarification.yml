@@ -1,0 +1,78 @@
+name: Decision Clarification Request
+description: Request clarification on a specific decision path or criterion
+title: "[Clarification] "
+labels: ["question", "clarification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Request Clarification
+        
+        Use this template to request clarification on decision tree paths, decision criteria, or recommendation logic.
+  
+  - type: dropdown
+    id: service
+    attributes:
+      label: Which service is this question about?
+      description: Select the Azure service you're considering
+      options:
+        - Azure Kubernetes Service (AKS)
+        - Azure Container Apps (ACA)
+        - Azure App Service
+        - Multiple services / General question
+    validations:
+      required: true
+  
+  - type: input
+    id: decision_node
+    attributes:
+      label: Decision Node or Criterion
+      description: Which decision node or criterion needs clarification? (e.g., "Q7 - Kubernetes expertise", "Scale-to-zero capability")
+      placeholder: "Example: Q7 - Team has Kubernetes expertise?"
+    validations:
+      required: false
+  
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like clarified? Be as specific as possible.
+      placeholder: |
+        Example: "The decision tree asks about Kubernetes expertise, but what level of expertise is required? Does basic Docker knowledge count, or do we need production K8s experience?"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: context
+    attributes:
+      label: Your Context (Optional)
+      description: Provide context about your situation to help us give a better answer
+      placeholder: |
+        Example: "Our team has 3 developers who have completed K8s online courses but haven't run production clusters. We currently use App Service."
+    validations:
+      required: false
+  
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Decision Timeline
+      description: How soon do you need to make this decision?
+      options:
+        - "Evaluating options (no immediate deadline)"
+        - "1-2 weeks"
+        - "Within a few days"
+        - "Urgent (need answer ASAP)"
+    validations:
+      required: false
+  
+  - type: checkboxes
+    id: reviewed
+    attributes:
+      label: Resources Reviewed
+      description: Which resources have you already checked?
+      options:
+        - label: Decision Flowchart
+        - label: Decision Matrix
+        - label: Detailed Decision Guide
+        - label: Comparison Table
+        - label: Real-world scenarios

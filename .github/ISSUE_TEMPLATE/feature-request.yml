@@ -1,0 +1,94 @@
+name: Feature Request / Improvement
+description: Suggest improvements or new features for the decision guides
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        
+        Suggest improvements, new features, or enhancements to the decision guides!
+  
+  - type: dropdown
+    id: feature_category
+    attributes:
+      label: Category
+      description: What type of improvement are you suggesting?
+      options:
+        - New decision criterion
+        - New diagram/visualization
+        - Additional scenario walkthrough
+        - Tool or calculator
+        - Documentation improvement
+        - Repository structure
+        - Other
+    validations:
+      required: true
+  
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Problem or Need
+      description: What problem does this feature solve? What need does it address?
+      placeholder: |
+        Example: "When evaluating services, I need to compare total cost of ownership over 12 months, but current tools only show pricing models without calculations."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed feature or improvement
+      placeholder: |
+        Example: "Add an interactive cost calculator in docs/ where users input: number of instances, CPU/RAM requirements, traffic patterns, and get 12-month TCO comparison for all three services."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered alternative solutions? What are they?
+      placeholder: |
+        Example: "Could link to Azure Pricing Calculator, but that requires users to understand each service's billing model. An integrated calculator with pre-filled templates would be easier."
+    validations:
+      required: false
+  
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      description: Who would benefit from this feature and how?
+      placeholder: |
+        Example:
+        - Finance teams can justify budget decisions
+        - Decision makers can compare apples-to-apples costs
+        - Reduces manual spreadsheet calculations
+        - Helps with cost-conscious decision making
+    validations:
+      required: false
+  
+  - type: dropdown
+    id: willing_to_contribute
+    attributes:
+      label: Would you be willing to contribute?
+      description: Are you interested in implementing this feature?
+      options:
+        - "Yes, I can implement this"
+        - "Yes, with guidance"
+        - "No, but happy to test/review"
+        - "No, suggesting only"
+    validations:
+      required: false
+  
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any mockups, examples, or related resources?
+      placeholder: |
+        Example: "Similar calculator exists at [link], or here's a mockup: [image]"
+    validations:
+      required: false

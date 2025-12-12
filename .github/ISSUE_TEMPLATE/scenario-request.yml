@@ -1,0 +1,104 @@
+name: Scenario Not Covered
+description: Report a scenario or use case not covered in the decision guides
+title: "[Scenario] "
+labels: ["enhancement", "scenario-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Scenario Request
+        
+        Help us improve the guide by reporting scenarios not adequately covered. Your input helps others with similar use cases!
+  
+  - type: textarea
+    id: scenario_description
+    attributes:
+      label: Scenario Description
+      description: Describe your use case or scenario in detail
+      placeholder: |
+        Example: "We're building a real-time collaborative editing platform (like Google Docs) with WebSocket connections, Redis for session state, and PostgreSQL for document storage. Need to handle 10,000+ concurrent connections with low latency."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Key Requirements
+      description: List your key technical and business requirements
+      placeholder: |
+        Example:
+        - Real-time WebSocket support (persistent connections)
+        - Redis for session management
+        - PostgreSQL database integration
+        - Auto-scaling based on connection count
+        - Budget constraint: <$1000/month
+        - Team: 2 full-stack developers, no DevOps experience
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: current_recommendation
+    attributes:
+      label: Current Best Guess
+      description: Based on the existing decision tools, which service do you think fits best?
+      options:
+        - Azure Kubernetes Service (AKS)
+        - Azure Container Apps (ACA)
+        - Azure App Service
+        - Unsure / None seem to fit
+    validations:
+      required: false
+  
+  - type: textarea
+    id: confusion_points
+    attributes:
+      label: Why Existing Guides Don't Help
+      description: What makes your scenario unclear or not covered by current documentation?
+      placeholder: |
+        Example: "The decision tree doesn't address persistent WebSocket connections. Decision matrix doesn't cover connection-based scaling. Scenarios focus on REST APIs and batch processing but not real-time collaborative features."
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: industry
+    attributes:
+      label: Industry/Domain (Optional)
+      description: What industry is this for?
+      options:
+        - E-commerce / Retail
+        - Healthcare / Medical
+        - Finance / Banking
+        - Education
+        - Gaming
+        - IoT / Manufacturing
+        - Media / Entertainment
+        - SaaS / B2B
+        - Other
+    validations:
+      required: false
+  
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints or Challenges
+      description: Any specific constraints, compliance requirements, or challenges?
+      placeholder: |
+        Example:
+        - HIPAA compliance required
+        - Must support multi-region deployment
+        - Limited to Azure only (no multi-cloud)
+        - Legacy .NET Framework dependencies
+    validations:
+      required: false
+  
+  - type: checkboxes
+    id: reviewed
+    attributes:
+      label: Resources Reviewed
+      description: Which resources have you already checked?
+      options:
+        - label: Decision Flowchart
+        - label: Decision Matrix
+        - label: Detailed Decision Guide (all scenarios)
+        - label: Comparison Table
+        - label: GitHub Issues (searched for similar scenarios)

@@ -1,0 +1,88 @@
+name: Documentation Bug Report
+description: Report errors, outdated information, or issues in the documentation
+title: "[Bug] "
+labels: ["bug", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Documentation Bug Report
+        
+        Found an error or outdated information? Help us fix it!
+  
+  - type: dropdown
+    id: bug_type
+    attributes:
+      label: Type of Issue
+      description: What kind of documentation issue is this?
+      options:
+        - Incorrect information
+        - Outdated information
+        - Broken link
+        - Typo or grammar error
+        - Missing information
+        - Diagram error
+        - Code example doesn't work
+        - Other
+    validations:
+      required: true
+  
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Where is the issue? (File name, section, or URL)
+      placeholder: "Example: docs/decision-matrix.md, Criterion 5, or README.md line 42"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: current_content
+    attributes:
+      label: Current Content (What's Wrong)
+      description: Quote the incorrect or problematic content
+      placeholder: |
+        Example: "The document states 'Container Apps can only run Linux containers', but this is no longer accurate as of..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: expected_content
+    attributes:
+      label: Expected Content (What Should It Say)
+      description: What should the content say instead? Provide corrected information if possible.
+      placeholder: |
+        Example: "Should state: 'Container Apps primarily supports Linux containers, with Windows container support in preview as of December 2025.'"
+    validations:
+      required: false
+  
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or Source
+      description: Provide links to official documentation or sources supporting your correction
+      placeholder: |
+        Example: "https://docs.microsoft.com/azure/container-apps/... or Azure announcement dated..."
+    validations:
+      required: false
+  
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Impact Severity
+      description: How severe is this issue?
+      options:
+        - Critical (leads to wrong decision or broken implementation)
+        - High (misleading information, affects user decisions)
+        - Medium (minor inaccuracy, cosmetic issue)
+        - Low (typo, formatting issue)
+    validations:
+      required: true
+  
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other context, screenshots, or information
+    validations:
+      required: false

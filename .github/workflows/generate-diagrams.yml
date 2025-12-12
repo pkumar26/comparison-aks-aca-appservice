@@ -1,0 +1,82 @@
+name: Generate Diagram Exports
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'diagrams/**/*.mmd'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'diagrams/**/*.mmd'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-diagrams:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install Mermaid CLI
+        run: npm install -g @mermaid-js/mermaid-cli
+      
+      - name: Create export directories
+        run: |
+          mkdir -p diagrams/exports/png
+          mkdir -p diagrams/exports/svg
+      
+      - name: Generate PNG diagrams with transparent background
+        run: |
+          for file in diagrams/*.mmd; do
+            filename=$(basename "$file" .mmd)
+            echo "Generating PNG for $filename..."
+            mmdc -i "$file" -o "diagrams/exports/png/${filename}.png" \
+              --backgroundColor transparent \
+              --theme default \
+              --width 2400 \
+              --scale 2
+          done
+      
+      - name: Generate SVG diagrams with transparent background
+        run: |
+          for file in diagrams/*.mmd; do
+            filename=$(basename "$file" .mmd)
+            echo "Generating SVG for $filename..."
+            mmdc -i "$file" -o "diagrams/exports/svg/${filename}.svg" \
+              --backgroundColor transparent \
+              --theme default
+          done
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet diagrams/exports/ || echo "changes=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit generated diagrams
+        if: steps.check_changes.outputs.changes == 'true' && github.event_name == 'push'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add diagrams/exports/
+          git commit -m "chore: auto-generate diagram exports [skip ci]"
+          git push
+      
+      - name: Upload diagram artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagram-exports
+          path: diagrams/exports/
+          retention-days: 30

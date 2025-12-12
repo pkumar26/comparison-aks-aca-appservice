@@ -1,0 +1,43 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Build outputs (from mermaid-cli)
+test-output.png
+test-output.svg
+*.test.png
+*.test.svg
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor backups
+*.bak
+*.backup
