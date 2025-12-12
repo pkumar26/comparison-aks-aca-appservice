@@ -48,9 +48,7 @@ jobs:
             libgbm1 \
             libasound2t64
       
-      - name: Install M \
-              --puppeteerConfigFile /dev/null \
-              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'ermaid CLI
+      - name: Install Mermaid CLI
         run: npm install -g @mermaid-js/mermaid-cli
       
       - name: Create export directories
@@ -67,7 +65,9 @@ jobs:
               --backgroundColor transparent \
               --theme default \
               --width 2400 \
-              --scale 2
+              --scale 2 \
+              --puppeteerConfigFile /dev/null \
+              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'
           done
       
       - name: Generate SVG diagrams with transparent background
@@ -75,11 +75,11 @@ jobs:
           for file in diagrams/*.mmd; do
             filename=$(basename "$file" .mmd)
             echo "Generating SVG for $filename..."
-            mmdc -i "$file" - \
-              --puppeteerConfigFile /dev/null \
-              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'o "diagrams/exports/svg/${filename}.svg" \
+            mmdc -i "$file" -o "diagrams/exports/svg/${filename}.svg" \
               --backgroundColor transparent \
-              --theme default
+              --theme default \
+              --puppeteerConfigFile /dev/null \
+              -p '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'
           done
       
       - name: Check for changes
